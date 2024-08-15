@@ -1,0 +1,42 @@
+{
+  "name": "ptt-recorder",
+  "version": "1.0.0",
+  "description": "PTT Recorder Offline Application",
+  "author": "Mobile Tornado",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "cd my-app && npm run build && node ../fixPaths.js",
+    "electron-pack": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^25.0.0",
+    "electron-builder": "^23.6.0"
+  },
+  "build": {
+    "appId": "com.ptt-recorder-offline.app",
+    "productName": "PTT-Recorder",
+    "files": [
+      "my-app/dist/**/*",
+      "main.js",
+      "MapServer/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "./MapServer",
+        "to": "MapServer"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "MobileTornado_icon.ico"
+    },
+    "nsis": {
+      "artifactName": "PTT-Recorder Setup.exe"
+    }
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
